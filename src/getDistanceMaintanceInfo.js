@@ -11,9 +11,8 @@ function generateDistanceString(carInfoArray) {
   ${result.trim()}`;
 }
 
-function getDistanceMaintanceInfo() {
-
-    let cars = [{
+function handleAllCars() {
+    return [{
         brand: "BYD",
         carList: ["CAR0005"],
         number: 1
@@ -25,9 +24,14 @@ function getDistanceMaintanceInfo() {
         brand: "Porsche",
         carList: ["CAR0001"],
         number: 1
-    }]
+    }];
+}
 
-    let sortedArray = orderCarsByBrand(cars)
+function getDistanceMaintanceInfo(carInfoArray) {
+
+    let result = handleAllCars(carInfoArray)
+
+    let sortedArray = orderCarsByBrand(result)
     return generateDistanceString(sortedArray)
 }
 

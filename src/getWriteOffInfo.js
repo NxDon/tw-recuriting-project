@@ -55,14 +55,18 @@ function enrollWriteOffList(carObj, writeOffList) {
 
 }
 
-function getWriteOffInfo(carInfoArray, currentDate) {
-    let writeOffCars = [];
+function handleAllCars(carInfoArray, currentDate, writeOffCars) {
     carInfoArray.forEach((carObj) => {
         if (carWillWriteOff(carObj, currentDate)) {
             enrollWriteOffList(carObj, writeOffCars)
             carObj.writeOffOrMaintained = true;
         }
     });
+}
+
+function getWriteOffInfo(carInfoArray, currentDate) {
+    let writeOffCars = [];
+    handleAllCars(carInfoArray, currentDate, writeOffCars);
     let sortedArray = orderCarsByBrand(writeOffCars);
     return generateWriteOffStr(sortedArray);
 
