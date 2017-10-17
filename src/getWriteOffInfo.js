@@ -1,4 +1,3 @@
-
 function carWillWriteOff(car, currentDate) {
     const currentMonth = new Date(currentDate).getMonth(),
         currentYear = new Date(currentDate).getYear();
@@ -20,38 +19,43 @@ function carWillWriteOff(car, currentDate) {
 
 
 function generateWriteOffStr(carInfoArray) {
-    // carInfoArray.forEach((car) => {
-    //     if(car.writeOff == true)
-    // })
-
     return `* Write-off coming soon...
   BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`
 }
 
-function hasSameBrandWriteOffed(carObj,writeOffCars) {
+function hasSameBrandWriteOffed(carObj, writeOffCars) {
     return writeOffCars.some((car) => {
         return car.brand === carObj.brand;
     })
 }
 
-function enrollWriteOffList(carObj, writeOffCars) {
-    
+function enrollWriteOffList(carObj, writeOffList) {
+    if (hasSameBrandWriteOffed(carObj, writeOffList)) {
+        writeOffList.forEach((obj,index) => {
+            if (obj.brand === carObj.brand) {
+                writeOffList[index] = {
+                    brand: obj.brand,
+                    carList: [...obj.carList, carObj.id],
+                    number: obj.number + 1
+                }
+            }
+        })
+    } else {
+        writeOffList.push({
+            brand: carObj.brand,
+            carList: [carObj.id],
+            number: 1
+        })
+    }
+
 }
 
 function getWriteOffInfo(carInfoArray, currentDate) {
     let writeOffCars = [];
     carInfoArray.forEach((carObj) => {
         if (carWillWriteOff(carObj, currentDate)) {
-            if(hasSameBrandWriteOffed(carObj,writeOffCars)){
-                enrollWriteOffList(carObj,writeOffCars);
-            }else{
-                writeOffCars.push({
-                    brand:carObj.brand,
-                    carList:[carObj.id],
-                    number:1
-                })
-            }
+            enrollWriteOffList(carObj, writeOffCars)
             carObj.writeOff = true;
         }
     });
@@ -66,3 +70,25 @@ module.exports = {
     hasSameBrandWriteOffed,
     enrollWriteOffList
 }
+
+writeOffList = [{
+    brand: "Ford",
+    carList: ["CAR0002"],
+    number: 1
+}];
+cars = [{
+    id: "CAR0006",
+    time: "2024/07/01",
+    brand: "Audi",
+    miles: 10001,
+    heavyRepaired: true,
+    writeOff: false
+}, {
+    id: "CAR0007",
+    time: "2023/04/19",
+    brand: "Ford",
+    miles: 9800,
+    heavyRepaired: false,
+    writeOff: false
+}]
+enrollWriteOffList(cars[1],writeOffList);

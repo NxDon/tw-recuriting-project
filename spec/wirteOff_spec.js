@@ -145,11 +145,13 @@ describe('test utility functions', function () {
 
     it('enrollWriteOffList should add carObj or modified existed obj', function () {
         enrollWriteOffList(cars[0], writeOffList);
+        enrollWriteOffList(cars[1], writeOffList);
+
         writeOffList.should.deepEqual(
             [{
                 brand: "Ford",
-                carList: ["CAR0002"],
-                number: 1
+                carList: ["CAR0002","CAR0007"],
+                number: 2
             },{
                 brand: "Audi",
                 carList: ["CAR0006"],
