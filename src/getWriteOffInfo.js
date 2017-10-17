@@ -35,6 +35,10 @@ function hasSameBrandWriteOffed(carObj,writeOffCars) {
     })
 }
 
+function enrollWriteOffList(carObj, writeOffCars) {
+    
+}
+
 function getWriteOffInfo(carInfoArray, currentDate) {
     let writeOffCars = [];
     carInfoArray.forEach((carObj) => {
@@ -59,5 +63,6 @@ module.exports = {
     getWriteOffInfo,
     carWillWriteOff,
     generateWriteOffStr,
-    hasSameBrandWriteOffed
+    hasSameBrandWriteOffed,
+    enrollWriteOffList
 }
