@@ -11,9 +11,30 @@ function generateDistanceString(carInfoArray) {
   ${result.trim()}`;
 }
 
+function enrollDistanceList(car, result) {
+
+}
+
 function handleAllCars(carInfoArray) {
     let result = [];
-
+    let filtered =  [
+        {
+            brand: "BYD",
+            carList: ["CAR0005"],
+            number: 1
+        },{
+            brand: "Ford",
+            carList: ["CAR0007"],
+            number: 1
+        },{
+            brand: "Porsche",
+            carList: ["CAR0001"],
+            number: 1
+        }
+    ]
+    filtered.forEach((car) => {
+        enrollDistanceList(car,result)
+    })
     result = [{
         brand: "BYD",
         carList: ["CAR0005"],
@@ -40,5 +61,6 @@ function getDistanceMaintanceInfo(carInfoArray) {
 
 module.exports = {
     getDistanceMaintanceInfo,
-    handleAllCars
+    handleAllCars,
+    enrollDistanceList
 }

@@ -1,7 +1,8 @@
 const should = require('should');
 const {
     getDistanceMaintanceInfo,
-    handleAllCars
+    handleAllCars,
+    enrollDistanceList
 } = require('../src/getDistanceMaintanceInfo');
 
 describe('getDistanceMaintanceInfo', function () {
@@ -100,6 +101,50 @@ describe('getDistanceMaintanceInfo', function () {
                 number: 1
             }
         ])
+
+    })
+
+    it("enrollDistanceList should add obj to result array",function () {
+        let result = [];
+        enrollDistanceList( {
+            id: 'CAR0005',
+            time: '2027/01/11',
+            brand: 'BYD',
+            miles: 19500,
+            heavyRepaired: false,
+            writeOffOrMaintained: false
+        },result);
+        result.should.deepEqual([ {
+            brand: "BYD",
+            carList: ["CAR0005"],
+            number: 1
+        }])
+        enrollDistanceList({
+            id: 'CAR0001',
+            time: '2025/04/05',
+            brand: 'Porsche',
+            miles: 10000,
+            heavyRepaired: false,
+            writeOffOrMaintained: false
+        },result)
+        result.should.deepEqual([{
+            brand: "BYD",
+            carList: ["CAR0005"],
+            number: 1
+        },{brand:"Porsche",carList:["CAR0001"],number:1}])
+        enrollDistanceList({
+            id: 'CAR0010',
+            time: '2027/01/11',
+            brand: 'BYD',
+            miles: 19500,
+            heavyRepaired: false,
+            writeOffOrMaintained: false
+        },result)
+        result.should.deepEqual([{
+            brand: "BYD",
+            carList: ["CAR0005","CAR0010"],
+            number: 2
+        },{brand:"Porsche",carList:["CAR0001"],number:1}])
 
     })
 
