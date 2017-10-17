@@ -163,7 +163,7 @@ describe('test utility functions', function () {
             brand: "Ford",
             carList: ["CAR0002", "CAR0007"],
             number: 2
-        }, ]
+        } ]
         generateWriteOffStr(list).should.eql(`* Write-off coming soon...
   Audi: 1 (CAR0006)
   Ford: 2 (CAR0002, CAR0007)`)
