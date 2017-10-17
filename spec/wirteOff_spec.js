@@ -112,7 +112,7 @@ describe('test utility functions',function () {
 
     })
     it('hasSameBrandWriteOffed return true if there is already same brand cars write offed',function () {
-        let writedList = [{
+        let writeOffList = [{
             brand:"Ford",
             carList:["CAR0002"],
             number:1
@@ -133,7 +133,8 @@ describe('test utility functions',function () {
             writeOff:false
         }]
 
-        hasSameBrandWriteOffed(cars[1]).should.eql(true);
+        hasSameBrandWriteOffed(cars[1],writeOffList).should.eql(true);
+        hasSameBrandWriteOffed(cars[0],writeOffList).should.eql(false);
 
 
     })

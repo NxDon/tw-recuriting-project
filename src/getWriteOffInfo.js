@@ -30,7 +30,9 @@ function generateWriteOffStr(carInfoArray) {
 }
 
 function hasSameBrandWriteOffed(carObj,writeOffCars) {
-    return true;
+    return writeOffCars.some((car) => {
+        return car.brand === carObj.brand;
+    })
 }
 
 function getWriteOffInfo(carInfoArray, currentDate) {
@@ -38,7 +40,7 @@ function getWriteOffInfo(carInfoArray, currentDate) {
     carInfoArray.forEach((carObj) => {
         if (carWillWriteOff(carObj, currentDate)) {
             if(hasSameBrandWriteOffed(carObj,writeOffCars)){
-                enrollWriteOffList();
+                enrollWriteOffList(carObj,writeOffCars);
             }else{
                 writeOffCars.push({
                     brand:carObj.brand,
