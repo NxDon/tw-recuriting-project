@@ -1,3 +1,5 @@
+const {orderCarsByBrand} = require('./utilities');
+
 function generateDistanceString(carInfoArray) {
     let result = ``;
     carInfoArray.forEach((obj) => {
@@ -24,7 +26,9 @@ function getDistanceMaintanceInfo() {
         carList: ["CAR0001"],
         number: 1
     }]
-    return generateDistanceString(cars)
+
+    let sortedArray = orderCarsByBrand(cars)
+    return generateDistanceString(sortedArray)
 }
 
 module.exports = {
