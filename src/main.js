@@ -22,7 +22,8 @@ function getCarInfos(carInfos) {
             time: infos[1],
             brand: infos[2],
             miles: parseInt(infos[3]),
-            heavyRepaired: infos[4] === "F" ? false : true
+            heavyRepaired: infos[4] === "F" ? false : true,
+            wirteOff:false
         })
     }
 
