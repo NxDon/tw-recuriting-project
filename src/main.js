@@ -38,7 +38,6 @@ function main(carInfos) {
     const distanceInfo = getDistanceMaintanceInfo(carInfoArray);
     const timeInfo = getTimeMaintanceInfo(carInfoArray, currentDate);
     return concatCarInfos(timeInfo, distanceInfo, writeOffInfo);
-
 }
 
 module.exports = {
