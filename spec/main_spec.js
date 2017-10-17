@@ -59,7 +59,7 @@ describe("test utility functions", function () {
         maintainer.concatCarInfos(timeStr, distanceStr, writeOffStr).should.eql(output)
     })
 
-    it('getTimeMaintanceInfo should return correct string',function () {
+    it('getTimeMaintanceInfo should return correct string', function () {
         const currentDate = `2030/09/01`;
         const obj = [{
             id: "CAR0002",
@@ -74,10 +74,131 @@ describe("test utility functions", function () {
             miles: 10001,
             heavyRepaired: true
         }];
-        let correctResult = `* Time-related maintenance coming soon...
+        const correctResult = `* Time-related maintenance coming soon...
   Audi: 1 (CAR0006)
   Porsche: 1 (CAR0002)`;
         maintainer.getTimeMaintanceInfo(obj).should.eql(correctResult);
+    })
+
+    it('getDistanceMaintanceInfo should return correct string', function () {
+        const obj = [{
+            id: "CAR0001",
+            time: "2025/04/05",
+            brand: "Prosche",
+            miles: 10000,
+            heavyRepaired: false
+        }, {
+            id: "CAR0005",
+            time: "2027/01/11",
+            brand: "BYD",
+            miles: 19500,
+            heavyRepaired: false
+        }, {
+            id: "CAR0007",
+            time: "2028/04/19",
+            brand: "Ford",
+            miles: 9800,
+            heavyRepaired: false
+        }]
+        const correctResult = `* Distance-related maintenance coming soon...
+  BYD: 1 (CAR0005)
+  Ford: 1 (CAR0007)
+  Porsche: 1 (CAR0001)`
+        maintainer.getDistanceMaintanceInfo(obj).should.eql(correctResult);
+    });
+
+    it("getWrtieOffInfo should return correct string ", function () {
+        const currentDate = `2030/09/01`;
+        const obj = [{
+            id: "CAR0004",
+            time: "2027/11/01",
+            brand: "BYD",
+            miles: 23000,
+            heavyRepaired: true
+        }, {
+            id: "CAR0009",
+            time: "2024/10/22",
+            brand: "Ford",
+            miles: 90300,
+            heavyRepaired: false
+        }];
+
+        const correctResult = `* Write-off coming soon...
+  BYD: 1 (CAR0004)
+  Ford: 1 (CAR0009)`;
+        maintainer.getWrtieOffInfo(obj).should.eql(correctResult)
+    })
+
+    it("getCarInfos should return object array", function () {
+        const input = `SubmitDate: 2030/09/01
+  CAR0001|2025/04/05|Porsche|10000|F
+  CAR0002|2029/10/14|Porsche|9000|F
+  CAR0003|2026/08/17|Porsche|13000|F
+  CAR0004|2027/11/01|BYD|23000|T
+  CAR0005|2027/01/11|BYD|19500|F
+  CAR0006|2029/07/01|Audi|10001|T
+  CAR0007|2028/04/19|Ford|9800|F
+  CAR0008|2027/07/10|Ford|15000|T
+  CAR0009|2024/10/22|Ford|90300|F`;
+
+        const carInfos = [{
+            id: "CAR0001",
+            time: "2025/04/05",
+            brand: "Porsche",
+            miles: 10000,
+            heavyRepaired: false
+        }, {
+            id: "CAR0002",
+            time: "2029/10/14",
+            brand: "Porsche",
+            miles: 9000,
+            heavyRepaired: false
+        }, {
+            id: "CAR0003",
+            time: "2026/08/17",
+            brand: "Porsche",
+            miles: 13000,
+            heavyRepaired: false
+        }, {
+            id: "CAR0004",
+            time: "2027/11/01",
+            brand: "BYD",
+            miles: 23000,
+            heavyRepaired: true
+        }, {
+            id: "CAR0005",
+            time: "2027/01/11",
+            brand: "BYD",
+            miles: 19500,
+            heavyRepaired: false
+        }, {
+            id: "CAR0006",
+            time: "2029/07/01",
+            brand: "Audi",
+            miles: 10001,
+            heavyRepaired: true
+        }, {
+            id: "CAR0007",
+            time: "2028/04/19",
+            brand: "Ford",
+            miles: 9800,
+            heavyRepaired: false
+        }, {
+            id: "CAR0008",
+            time: "2027/07/10",
+            brand: "Ford",
+            miles: 15000,
+            heavyRepaired: true
+        }, {
+            id: "CAR0009",
+            time: "2024/10/22",
+            brand: "Ford",
+            miles: 90300,
+            heavyRepaired: false
+        }];
+        const SubmitDate= `2030/09/01`
+        maintainer.getCarInfos(input).should.eql({SubmitDate,carInfos});
+
 
     })
 
