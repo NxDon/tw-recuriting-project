@@ -1,6 +1,6 @@
 const {getTimeMaintanceInfo} = require('./getTimeMaintanceInfo.js');
 const {getDistanceMaintanceInfo} = require('./getDistanceMaintanceInfo.js');
-const {getWrtieOffInfo} = require('./getWrtieOffInfo.js');
+const {getWriteOffInfo} = require('./getWriteOffInfo.js');
 
 
 function concatCarInfos(timeInfo, distanceInfo, writeOffInfo) {
@@ -35,7 +35,7 @@ function getCarInfos(carInfos) {
 
 function main(carInfos) {
     const {carInfoArray, currentDate} = getCarInfos(carInfos);
-    const writeOffInfo = getWrtieOffInfo(carInfoArray, currentDate);
+    const writeOffInfo = getWriteOffInfo(carInfoArray, currentDate);
     const distanceInfo = getDistanceMaintanceInfo(carInfoArray);
     const timeInfo = getTimeMaintanceInfo(carInfoArray, currentDate);
     return concatCarInfos(timeInfo, distanceInfo, writeOffInfo);

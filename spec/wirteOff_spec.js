@@ -1,13 +1,13 @@
 const should = require('should');
 const {
-    getWrtieOffInfo,
+    getWriteOffInfo,
     carWillWriteOff,
     writeOffCar,
-} = require('../src/getWrtieOffInfo');
+} = require('../src/getWriteOffInfo');
 
-describe('getWrtieOffInfo', function () {
+describe('getWriteOffInfo', function () {
 
-    it("getWrtieOffInfo should return correct string ", function () {
+    it("getWriteOffInfo should return correct string ", function () {
         const currentDate = `2030/09/01`;
         const obj = [{
             id: "CAR0004",
@@ -28,7 +28,7 @@ describe('getWrtieOffInfo', function () {
         const correctResult = `* Write-off coming soon...
   BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`;
-        getWrtieOffInfo(obj).should.eql(correctResult)
+        getWriteOffInfo(obj).should.eql(correctResult)
     })
 })
 

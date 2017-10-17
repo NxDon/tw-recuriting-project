@@ -28,17 +28,17 @@ function carWillWriteOff(car, currentDate) {
 }
 
 
-function getWrtieOffInfo(carInfoArray, currentDate) {
+function getWriteOffInfo(carInfoArray, currentDate) {
     // let result = '';
     // let writeOffArr = writeOffCar(carInfoArray,currentDate)
     // result = generateWriteOffInfos(writeOffArr)
     return `* Write-off coming soon...
   BYD: 1 (CAR0004)
-  Ford: 1 (CAR00 09)`
+  Ford: 1 (CAR0009)`
 }
 
 module.exports = {
-    getWrtieOffInfo,
+    getWriteOffInfo,
     carWillWriteOff,
     writeOffCar
 }
