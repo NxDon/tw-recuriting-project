@@ -23,7 +23,7 @@ function getCarInfos(carInfos) {
             brand: infos[2],
             miles: parseInt(infos[3]),
             heavyRepaired: infos[4] === "F" ? false : true,
-            writeOff:false
+            writeOffOrMaintained:false
         })
     }
 

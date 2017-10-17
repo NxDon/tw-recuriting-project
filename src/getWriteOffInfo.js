@@ -60,7 +60,7 @@ function getWriteOffInfo(carInfoArray, currentDate) {
     carInfoArray.forEach((carObj) => {
         if (carWillWriteOff(carObj, currentDate)) {
             enrollWriteOffList(carObj, writeOffCars)
-            carObj.writeOff = true;
+            carObj.writeOffOrMaintained = true;
         }
     });
     let sortedArray = orderCarsByBrand(writeOffCars);
