@@ -1,3 +1,4 @@
+const {orderCarsByBrand} = require('./utilities');
 function carWillWriteOff(car, currentDate) {
     const currentMonth = new Date(currentDate).getMonth(),
         currentYear = new Date(currentDate).getYear();
@@ -19,9 +20,12 @@ function carWillWriteOff(car, currentDate) {
 
 
 function generateWriteOffStr(carInfoArray) {
+    let result = ``;
+    carInfoArray.forEach((obj) => {
+        result+=`${obj.brand}: ${obj.number} (${obj.carList.reduce((id1,id2) => {return id1+', '+id2})})\n  `;
+    })
     return `* Write-off coming soon...
-  BYD: 1 (CAR0004)
-  Ford: 1 (CAR0009)`
+  ${result.trim()}`
 }
 
 function hasSameBrandWriteOffed(carObj, writeOffCars) {
@@ -59,7 +63,8 @@ function getWriteOffInfo(carInfoArray, currentDate) {
             carObj.writeOff = true;
         }
     });
-    return generateWriteOffStr(carInfoArray);
+    let sortedArray = orderCarsByBrand(writeOffCars);
+    return generateWriteOffStr(sortedArray);
 
 }
 
@@ -70,25 +75,3 @@ module.exports = {
     hasSameBrandWriteOffed,
     enrollWriteOffList
 }
-
-writeOffList = [{
-    brand: "Ford",
-    carList: ["CAR0002"],
-    number: 1
-}];
-cars = [{
-    id: "CAR0006",
-    time: "2024/07/01",
-    brand: "Audi",
-    miles: 10001,
-    heavyRepaired: true,
-    writeOff: false
-}, {
-    id: "CAR0007",
-    time: "2023/04/19",
-    brand: "Ford",
-    miles: 9800,
-    heavyRepaired: false,
-    writeOff: false
-}]
-enrollWriteOffList(cars[1],writeOffList);

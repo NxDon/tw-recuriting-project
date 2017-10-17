@@ -4,7 +4,7 @@ const {
     carWillWriteOff,
     generateWriteOffStr,
     hasSameBrandWriteOffed,
-    enrollWriteOffList
+    enrollWriteOffList,
 } = require('../src/getWriteOffInfo');
 
 describe('getWriteOffInfo', function () {
@@ -13,9 +13,9 @@ describe('getWriteOffInfo', function () {
         const currentDate = `2030/09/01`;
         const obj = [{
             id: "CAR0004",
-            time: "2027/11/01",
+            time: "2026/08/17",
             brand: "BYD",
-            miles: 23000,
+            miles: 13000,
             heavyRepaired: true,
             writeOff: false
         }, {
@@ -30,7 +30,7 @@ describe('getWriteOffInfo', function () {
         const correctResult = `* Write-off coming soon...
   BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`;
-        getWriteOffInfo(obj).should.eql(correctResult)
+        getWriteOffInfo(obj,currentDate).should.eql(correctResult)
     })
 })
 
@@ -124,7 +124,6 @@ describe('test utility functions', function () {
         }]
     })
 
-
     it('carWillWriteOff will correctly judge a car will be write off', function () {
         const currentDate = `2030/09/01`;
 
@@ -137,27 +136,37 @@ describe('test utility functions', function () {
 
     })
     it('hasSameBrandWriteOffed return true if there is already same brand cars write offed', function () {
-
-
         hasSameBrandWriteOffed(cars[1], writeOffList).should.eql(true);
         hasSameBrandWriteOffed(cars[0], writeOffList).should.eql(false);
     })
-
     it('enrollWriteOffList should add carObj or modified existed obj', function () {
         enrollWriteOffList(cars[0], writeOffList);
         enrollWriteOffList(cars[1], writeOffList);
-
         writeOffList.should.deepEqual(
             [{
                 brand: "Ford",
-                carList: ["CAR0002","CAR0007"],
+                carList: ["CAR0002", "CAR0007"],
                 number: 2
-            },{
+            }, {
                 brand: "Audi",
                 carList: ["CAR0006"],
                 number: 1
-
             }]
         )
     })
-})
+    it('generateWriteOffStr should return correct string',function () {
+        let list = [{
+            brand: "Audi",
+            carList: ["CAR0006"],
+            number: 1
+        },{
+            brand: "Ford",
+            carList: ["CAR0002", "CAR0007"],
+            number: 2
+        }, ]
+        generateWriteOffStr(list).should.eql(`* Write-off coming soon...
+  Audi: 1 (CAR0006)
+  Ford: 2 (CAR0002, CAR0007)`)
+
+    })
+});
