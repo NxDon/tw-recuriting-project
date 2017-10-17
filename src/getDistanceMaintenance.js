@@ -1,4 +1,4 @@
-const {orderCarsByBrand} = require('./utilities');
+const {orderCarsByBrand,hasSameBrand} = require('./utilities');
 
 function generateDistanceString(carInfoArray) {
     let result = ``;
@@ -12,28 +12,36 @@ function generateDistanceString(carInfoArray) {
 }
 
 function enrollDistanceList(car, result) {
+    if(hasSameBrand(car,result)){
+        result.forEach((obj,index) => {
+            if(obj.brand === car.brand) {
+                result[index] = {
+                    brand: car.brand,
+                    carList: [...obj.carList,car.id],
+                    number: obj.number + 1
+                }
+            }
+        })
+    }else{
+        result.push({
+            brand: car.brand,
+            carList: [car.id],
+            number: 1
+        })
+    }
+}
 
+function carDrivedLongEnough(car) {
+    return car.miles % 10000 >= 9000;
 }
 
 function handleAllCars(carInfoArray) {
     let result = [];
-    let filtered =  [
-        {
-            brand: "BYD",
-            carList: ["CAR0005"],
-            number: 1
-        },{
-            brand: "Ford",
-            carList: ["CAR0007"],
-            number: 1
-        },{
-            brand: "Porsche",
-            carList: ["CAR0001"],
-            number: 1
+    carInfoArray.forEach((car) => {
+        if(carDrivedLongEnough(car)){
+            enrollDistanceList(car,result)
+            car.writeOffOrMaintained = true
         }
-    ]
-    filtered.forEach((car) => {
-        enrollDistanceList(car,result)
     })
     result = [{
         brand: "BYD",
@@ -52,9 +60,7 @@ function handleAllCars(carInfoArray) {
 }
 
 function getDistanceMaintanceInfo(carInfoArray) {
-
     let result = handleAllCars(carInfoArray)
-
     let sortedArray = orderCarsByBrand(result)
     return generateDistanceString(sortedArray)
 }
@@ -62,5 +68,6 @@ function getDistanceMaintanceInfo(carInfoArray) {
 module.exports = {
     getDistanceMaintanceInfo,
     handleAllCars,
-    enrollDistanceList
+    enrollDistanceList,
+    carDrivedLongEnough
 }

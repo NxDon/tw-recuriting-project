@@ -1,5 +1,5 @@
 const {getTimeMaintanceInfo} = require('./getTimeMaintanceInfo.js');
-const {getDistanceMaintanceInfo} = require('./getDistanceMaintanceInfo.js');
+const {getDistanceMaintanceInfo} = require('./getDistanceMaintenance.js');
 const {getWriteOffInfo} = require('./getWriteOffInfo.js');
 
 

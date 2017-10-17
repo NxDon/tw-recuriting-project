@@ -2,8 +2,9 @@ const should = require('should');
 const {
     getDistanceMaintanceInfo,
     handleAllCars,
-    enrollDistanceList
-} = require('../src/getDistanceMaintanceInfo');
+    enrollDistanceList,
+    carDrivedLongEnough
+} = require('../src/getDistanceMaintenance');
 
 describe('getDistanceMaintanceInfo', function () {
     const carInfos = [{
@@ -85,17 +86,17 @@ describe('getDistanceMaintanceInfo', function () {
         getDistanceMaintanceInfo(carInfos).should.eql(correctResult);
     });
 
-    it("handleAllCars should return a list contain maintain infos",function () {
+    it("handleAllCars should return a list contain maintain infos", function () {
         handleAllCars(carInfos).should.deepEqual([
             {
                 brand: "BYD",
                 carList: ["CAR0005"],
                 number: 1
-            },{
+            }, {
                 brand: "Ford",
                 carList: ["CAR0007"],
                 number: 1
-            },{
+            }, {
                 brand: "Porsche",
                 carList: ["CAR0001"],
                 number: 1
@@ -104,17 +105,17 @@ describe('getDistanceMaintanceInfo', function () {
 
     })
 
-    it("enrollDistanceList should add obj to result array",function () {
+    it("enrollDistanceList should add obj to result array", function () {
         let result = [];
-        enrollDistanceList( {
+        enrollDistanceList({
             id: 'CAR0005',
             time: '2027/01/11',
             brand: 'BYD',
             miles: 19500,
             heavyRepaired: false,
             writeOffOrMaintained: false
-        },result);
-        result.should.deepEqual([ {
+        }, result);
+        result.should.deepEqual([{
             brand: "BYD",
             carList: ["CAR0005"],
             number: 1
@@ -126,12 +127,12 @@ describe('getDistanceMaintanceInfo', function () {
             miles: 10000,
             heavyRepaired: false,
             writeOffOrMaintained: false
-        },result)
+        }, result)
         result.should.deepEqual([{
             brand: "BYD",
             carList: ["CAR0005"],
             number: 1
-        },{brand:"Porsche",carList:["CAR0001"],number:1}])
+        }, {brand: "Porsche", carList: ["CAR0001"], number: 1}])
         enrollDistanceList({
             id: 'CAR0010',
             time: '2027/01/11',
@@ -139,13 +140,23 @@ describe('getDistanceMaintanceInfo', function () {
             miles: 19500,
             heavyRepaired: false,
             writeOffOrMaintained: false
-        },result)
+        }, result)
         result.should.deepEqual([{
             brand: "BYD",
-            carList: ["CAR0005","CAR0010"],
+            carList: ["CAR0005", "CAR0010"],
             number: 2
-        },{brand:"Porsche",carList:["CAR0001"],number:1}])
+        }, {brand: "Porsche", carList: ["CAR0001"], number: 1}])
 
     })
 
-})
+    it('carDrivedLongEnough will judge a car is to be maintained due to long drive', function () {
+        carInfos.forEach((car, index) => {
+            if (index === 1 || index === 4 || index === 6) {
+                carDrivedLongEnough(car).should.eql(true);
+            } else {
+                carDrivedLongEnough(car).should.eql(false);
+            }
+        })
+    })
+
+});

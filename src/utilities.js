@@ -6,7 +6,12 @@ function orderCarsByBrand(array) {
 }
 
 
-
+function hasSameBrand(carObj, writeOffCars) {
+    return writeOffCars.some((car) => {
+        return car.brand === carObj.brand;
+    })
+}
 module.exports = {
-    orderCarsByBrand
+    orderCarsByBrand,
+    hasSameBrand
 }
