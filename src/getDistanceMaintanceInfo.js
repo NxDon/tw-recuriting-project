@@ -11,8 +11,10 @@ function generateDistanceString(carInfoArray) {
   ${result.trim()}`;
 }
 
-function handleAllCars() {
-    return [{
+function handleAllCars(carInfoArray) {
+    let result = [];
+
+    result = [{
         brand: "BYD",
         carList: ["CAR0005"],
         number: 1
@@ -25,6 +27,7 @@ function handleAllCars() {
         carList: ["CAR0001"],
         number: 1
     }];
+    return result;
 }
 
 function getDistanceMaintanceInfo(carInfoArray) {
@@ -36,5 +39,6 @@ function getDistanceMaintanceInfo(carInfoArray) {
 }
 
 module.exports = {
-    getDistanceMaintanceInfo
+    getDistanceMaintanceInfo,
+    handleAllCars
 }

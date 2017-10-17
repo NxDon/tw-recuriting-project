@@ -1,5 +1,8 @@
 const should = require('should');
-const {getDistanceMaintanceInfo} = require('../src/getDistanceMaintanceInfo');
+const {
+    getDistanceMaintanceInfo,
+    handleAllCars
+} = require('../src/getDistanceMaintanceInfo');
 
 describe('getDistanceMaintanceInfo', function () {
     const carInfos = [{
@@ -80,5 +83,24 @@ describe('getDistanceMaintanceInfo', function () {
   Porsche: 1 (CAR0001)`
         getDistanceMaintanceInfo(carInfos).should.eql(correctResult);
     });
+
+    it("handleAllCars should return a list contain maintain infos",function () {
+        handleAllCars(carInfos).should.deepEqual([
+            {
+                brand: "BYD",
+                carList: ["CAR0005"],
+                number: 1
+            },{
+                brand: "Ford",
+                carList: ["CAR0007"],
+                number: 1
+            },{
+                brand: "Porsche",
+                carList: ["CAR0001"],
+                number: 1
+            }
+        ])
+
+    })
 
 })
