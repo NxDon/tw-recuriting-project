@@ -1,12 +1,3 @@
-function writeOffCar(carInfoArray,currentDate) {
-    /*let writeOffedCars = [];
-    carInfoArray.forEach((carObj) => {
-        if(carWillWriteOff(carObj)) {
-            writeOffedCars
-        }
-    })*/
-}
-
 
 function carWillWriteOff(car, currentDate) {
     const currentMonth = new Date(currentDate).getMonth(),
@@ -28,17 +19,43 @@ function carWillWriteOff(car, currentDate) {
 }
 
 
-function getWriteOffInfo(carInfoArray, currentDate) {
-    // let result = '';
-    // let writeOffArr = writeOffCar(carInfoArray,currentDate)
-    // result = generateWriteOffInfos(writeOffArr)
+function generateWriteOffStr(carInfoArray) {
+    // carInfoArray.forEach((car) => {
+    //     if(car.writeOff == true)
+    // })
+
     return `* Write-off coming soon...
   BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`
 }
 
+function hasSameBrandWriteOffed(carObj,writeOffCars) {
+    return true;
+}
+
+function getWriteOffInfo(carInfoArray, currentDate) {
+    let writeOffCars = [];
+    carInfoArray.forEach((carObj) => {
+        if (carWillWriteOff(carObj, currentDate)) {
+            if(hasSameBrandWriteOffed(carObj,writeOffCars)){
+                enrollWriteOffList();
+            }else{
+                writeOffCars.push({
+                    brand:carObj.brand,
+                    carList:[carObj.id],
+                    number:1
+                })
+            }
+            carObj.writeOff = true;
+        }
+    });
+    return generateWriteOffStr(carInfoArray);
+
+}
+
 module.exports = {
     getWriteOffInfo,
     carWillWriteOff,
-    writeOffCar
+    generateWriteOffStr,
+    hasSameBrandWriteOffed
 }

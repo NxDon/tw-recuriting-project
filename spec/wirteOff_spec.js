@@ -2,7 +2,8 @@ const should = require('should');
 const {
     getWriteOffInfo,
     carWillWriteOff,
-    writeOffCar,
+    generateWriteOffStr,
+    hasSameBrandWriteOffed
 } = require('../src/getWriteOffInfo');
 
 describe('getWriteOffInfo', function () {
@@ -15,14 +16,14 @@ describe('getWriteOffInfo', function () {
             brand: "BYD",
             miles: 23000,
             heavyRepaired: true,
-            wirteOff:false
-        }, {
+            writeOff:false
+        },{
             id: "CAR0009",
             time: "2024/10/22",
             brand: "Ford",
             miles: 90300,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         }];
 
         const correctResult = `* Write-off coming soon...
@@ -39,14 +40,14 @@ describe('test utility functions',function () {
             brand: "BYD",
             miles: 23000,
             heavyRepaired: true,
-            wirteOff:false
+            writeOff:false
         },{
             id: "CAR0009",
             time: "2024/10/22",
             brand: "Ford",
             miles: 90300,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         }];
         let robust = [{
             id: "CAR0001",
@@ -54,49 +55,49 @@ describe('test utility functions',function () {
             brand: "Porsche",
             miles: 10000,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         }, {
             id: "CAR0002",
             time: "2029/10/14",
             brand: "Porsche",
             miles: 9000,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         }, {
             id: "CAR0003",
             time: "2026/08/17",
             brand: "Porsche",
             miles: 13000,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         },  {
             id: "CAR0005",
             time: "2027/01/11",
             brand: "BYD",
             miles: 19500,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         }, {
             id: "CAR0006",
             time: "2029/07/01",
             brand: "Audi",
             miles: 10001,
             heavyRepaired: true,
-            wirteOff:false
+            writeOff:false
         }, {
             id: "CAR0007",
             time: "2028/04/19",
             brand: "Ford",
             miles: 9800,
             heavyRepaired: false,
-            wirteOff:false
+            writeOff:false
         }, {
             id: "CAR0008",
             time: "2027/07/10",
             brand: "Ford",
             miles: 15000,
             heavyRepaired: true,
-            wirteOff:false
+            writeOff:false
         }];
 
     it('carWillWriteOff will correctly judge a car will be write off',function () {
@@ -110,7 +111,29 @@ describe('test utility functions',function () {
         })
 
     })
-    it('writeOffCar will write off input car and remove it from origin array',function () {
+    it('hasSameBrandWriteOffed return true if there is already same brand cars write offed',function () {
+        let writedList = [{
+            brand:"Ford",
+            carList:["CAR0002"],
+            number:1
+        }];
+        let cars = [{
+            id: "CAR0006",
+            time: "2024/07/01",
+            brand: "Audi",
+            miles: 10001,
+            heavyRepaired: true,
+            writeOff:false
+        }, {
+            id: "CAR0007",
+            time: "2023/04/19",
+            brand: "Ford",
+            miles: 9800,
+            heavyRepaired: false,
+            writeOff:false
+        }]
+
+        hasSameBrandWriteOffed(cars[1]).should.eql(true);
 
 
     })

@@ -23,13 +23,13 @@ function getCarInfos(carInfos) {
             brand: infos[2],
             miles: parseInt(infos[3]),
             heavyRepaired: infos[4] === "F" ? false : true,
-            wirteOff:false
+            writeOff:false
         })
     }
 
     return {
         SubmitDate,
-        carInfos:infoObjs
+        carInfoArray:infoObjs
     }
 }
 
