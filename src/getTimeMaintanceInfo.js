@@ -1,3 +1,5 @@
+const {orderCarsByBrand,hasSameBrand} = require('./utilities');
+
 function generateTimeString(carInfoArray) {
     let result = ``;
     carInfoArray.forEach((obj) => {
@@ -9,8 +11,8 @@ function generateTimeString(carInfoArray) {
   ${result.trim()}`;
 }
 
-function getTimeMaintanceInfo() {
-    let sortedArray = [{
+function handleAllCars(carInfoArray,currentDate) {
+    return [{
         brand: "Audi",
         carList: ["CAR0006"],
         number: 1
@@ -18,7 +20,12 @@ function getTimeMaintanceInfo() {
         brand: "Porsche",
         carList: ["CAR0002"],
         number: 1
-    }]
+    }];
+}
+
+function getTimeMaintanceInfo(carInfoArray,currentDate) {
+    let  result = handleAllCars(carInfoArray,currentDate)
+    let sortedArray = orderCarsByBrand(result);
     return generateTimeString(sortedArray)
 }
 
