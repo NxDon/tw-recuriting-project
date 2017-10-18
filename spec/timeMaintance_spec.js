@@ -1,6 +1,7 @@
 const should = require('should');
 const {
-    getTimeMaintanceInfo
+    getTimeMaintanceInfo,
+    generateTimeString
 
 } = require('../src/getTimeMaintanceInfo');
 
@@ -84,4 +85,20 @@ describe('getTimeMaintanceInfo', function () {
     it('getTimeMaintanceInfo should return correct string', function () {
         getTimeMaintanceInfo(carInfos, currentDate).should.eql(output);
     })
+    it("generateTimeString should generate correct string", function () {
+        let list = [{
+            brand: "Audi",
+            carList: ["CAR0006"],
+            number: 1
+        }, {
+            brand: "Porsche",
+            carList: ["CAR0002"],
+            number: 1
+        }]
+        generateTimeString(list).should.eql(`* Time-related maintenance coming soon...
+  Audi: 1 (CAR0006)
+  Porsche: 1 (CAR0002)`)
+    });
+
+
 })
