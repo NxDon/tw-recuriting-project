@@ -37,7 +37,6 @@ function main(carInfos) {
     const {carInfoArray, currentDate} = getCarInfos(carInfos);
     const writeOffInfo = getWriteOffInfo(carInfoArray, currentDate);
     const distanceInfo = getDistanceMaintanceInfo(carInfoArray);
-    console.log(carInfoArray);
     const timeInfo = getTimeMaintanceInfo(carInfoArray, currentDate);
     return concatCarInfos(timeInfo, distanceInfo, writeOffInfo);
 }

@@ -82,12 +82,17 @@ describe('getDistanceMaintanceInfo', function () {
         const correctResult = `* Distance-related maintenance coming soon...
   BYD: 1 (CAR0005)
   Ford: 1 (CAR0007)
-  Porsche: 1 (CAR0001)`
+  Porsche: 1 (CAR0001)`;
         getDistanceMaintanceInfo(carInfos).should.eql(correctResult);
     });
 
     it("handleAllCars should return a list contain maintain infos", function () {
         handleAllCars(carInfos).should.deepEqual([
+            {
+                brand: "Porsche",
+                carList: ["CAR0001"],
+                number: 1
+            },
             {
                 brand: "BYD",
                 carList: ["CAR0005"],
@@ -96,11 +101,7 @@ describe('getDistanceMaintanceInfo', function () {
                 brand: "Ford",
                 carList: ["CAR0007"],
                 number: 1
-            }, {
-                brand: "Porsche",
-                carList: ["CAR0001"],
-                number: 1
-            }
+            },
         ])
 
     })
@@ -151,7 +152,7 @@ describe('getDistanceMaintanceInfo', function () {
 
     it('carDrivedLongEnough will judge a car is to be maintained due to long drive', function () {
         carInfos.forEach((car, index) => {
-            if (index === 1 || index === 4 || index === 6) {
+            if (index === 0 || index === 4 || index === 6) {
                 carDrivedLongEnough(car).should.eql(true);
             } else {
                 carDrivedLongEnough(car).should.eql(false);

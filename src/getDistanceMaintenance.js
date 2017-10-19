@@ -1,4 +1,4 @@
-const {orderCarsByBrand,hasSameBrand} = require('./utilities');
+const {orderCarsByBrand, hasSameBrand} = require('./utilities');
 
 function generateDistanceString(carInfoArray) {
     let result = ``;
@@ -12,17 +12,17 @@ function generateDistanceString(carInfoArray) {
 }
 
 function enrollDistanceList(car, result) {
-    if(hasSameBrand(car,result)){
-        result.forEach((obj,index) => {
-            if(obj.brand === car.brand) {
+    if (hasSameBrand(car, result)) {
+        result.forEach((obj, index) => {
+            if (obj.brand === car.brand) {
                 result[index] = {
                     brand: car.brand,
-                    carList: [...obj.carList,car.id],
+                    carList: [...obj.carList, car.id],
                     number: obj.number + 1
                 }
             }
         })
-    }else{
+    } else {
         result.push({
             brand: car.brand,
             carList: [car.id],
@@ -32,30 +32,18 @@ function enrollDistanceList(car, result) {
 }
 
 function carDrivedLongEnough(car) {
-    return car.miles % 10000 >= 9000;
+    return car.miles % 10000 >= 9500 || (car.miles % 10000 === 0 && car.miles / 10000 > 0);
 }
 
 function handleAllCars(carInfoArray) {
     let result = [];
     carInfoArray.forEach((car) => {
-        if(carDrivedLongEnough(car)){
-            enrollDistanceList(car,result)
+        if (carDrivedLongEnough(car)) {
+            enrollDistanceList(car, result)
             car.writeOffOrMaintained = true
         }
     })
-    result = [{
-        brand: "BYD",
-        carList: ["CAR0005"],
-        number: 1
-    }, {
-        brand: "Ford",
-        carList: ["CAR0007"],
-        number: 1
-    }, {
-        brand: "Porsche",
-        carList: ["CAR0001"],
-        number: 1
-    }];
+
     return result;
 }
 
