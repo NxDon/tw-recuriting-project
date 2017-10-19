@@ -74,8 +74,7 @@ describe('getDistanceMaintanceInfo', function () {
     })
     it('getDistanceMaintanceInfo should return correct string', function () {
 
-        const correctResult = `* Distance-related maintenance coming soon...
-  BYD: 1 (CAR0005)
+        const correctResult = `BYD: 1 (CAR0005)
   Ford: 1 (CAR0007)
   Porsche: 1 (CAR0001)`;
         getDistanceMaintanceInfo(carInfos).should.eql(correctResult);

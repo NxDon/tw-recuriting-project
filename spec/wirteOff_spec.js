@@ -101,8 +101,7 @@ describe('getWriteOffInfo', function () {
         //     alreadyWriteOffed : false
         // }];
 
-        const correctResult = `* Write-off coming soon...
-  BYD: 1 (CAR0004)
+        const correctResult = `BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`;
         getWriteOffInfo(carInfoArray,currentDate).should.eql(correctResult)
     })
@@ -207,18 +206,4 @@ describe('test utility functions', function () {
         hasSameBrandWriteOffed(carInfoArray[5], enrolledList).should.eql(false);
     })
 
-    it.skip('generateWriteOffStr should return correct string',function () {
-        let list = [{
-            brand: "Audi",
-            carList: ["CAR0006"],
-            number: 1
-        },{
-            brand: "Ford",
-            carList: ["CAR0002", "CAR0007"],
-            number: 2
-        } ]
-        generateWriteOffStr(list).should.eql(`* Write-off coming soon...
-  Audi: 1 (CAR0006)
-  Ford: 2 (CAR0002, CAR0007)`)
-    })
 });

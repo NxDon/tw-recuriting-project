@@ -1,4 +1,4 @@
-const {orderCarsByBrand, enrollInList} = require('./utilities');
+const {orderCarsByBrand, enrollInList,generateString} = require('./utilities');
 
 function carWillWriteOff(car, current) {
     const MillisecondsOf365Days = 31536000000;
@@ -23,24 +23,11 @@ function carWillWriteOff(car, current) {
     return false;
 }
 
-
-function generateWriteOffStr(carInfoArray) {
-    let result = ``;
-    carInfoArray.forEach((obj) => {
-        result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
-            return id1 + ', ' + id2
-        })})\n  `;
-    })
-    return `* Write-off coming soon...
-  ${result.trim()}`
-}
-
 function hasSameBrandWriteOffed(carObj, writeOffCars) {
     return writeOffCars.some((car) => {
         return car.brand === carObj.brand;
     })
 }
-
 
 function handleAllCars(carInfoArray, currentDate, writeOffCars) {
     carInfoArray.forEach((carObj) => {
@@ -55,14 +42,13 @@ function getWriteOffInfo(carInfoArray, currentDate) {
     let writeOffCars = [];
     handleAllCars(carInfoArray, currentDate, writeOffCars);
     let sortedArray = orderCarsByBrand(writeOffCars);
-    return generateWriteOffStr(sortedArray);
+    return generateString(sortedArray);
 
 }
 
 module.exports = {
     getWriteOffInfo,
     carWillWriteOff,
-    generateWriteOffStr,
     hasSameBrandWriteOffed,
 
 }

@@ -1,16 +1,4 @@
-const {orderCarsByBrand, enrollInList} = require('./utilities');
-
-function generateDistanceString(carInfoArray) {
-    let result = ``;
-    carInfoArray.forEach((obj) => {
-        result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
-            return id1 + ', ' + id2
-        })})\n  `;
-    })
-    return `* Distance-related maintenance coming soon...
-  ${result.trim()}`;
-}
-
+const {orderCarsByBrand, enrollInList,generateString} = require('./utilities');
 
 function carDrivedLongEnough(car) {
     if (car.writeOffOrMaintained || car.alreadyWriteOffed) {
@@ -34,7 +22,7 @@ function handleAllCars(carInfoArray) {
 function getDistanceMaintanceInfo(carInfoArray) {
     let result = handleAllCars(carInfoArray)
     let sortedArray = orderCarsByBrand(result)
-    return generateDistanceString(sortedArray)
+    return generateString(sortedArray)
 }
 
 module.exports = {

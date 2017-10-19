@@ -1,16 +1,5 @@
 const {orderCarsByBrand, enrollInList,generateString} = require('./utilities');
 
-// function generateTimeString(carInfoArray) {
-//     let result = ``;
-//     carInfoArray.forEach((obj) => {
-//         result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
-//             return id1 + ', ' + id2
-//         })})\n  `;
-//     });
-//     return `* Time-related maintenance coming soon...
-//   ${result.trim()}`;
-// }
-
 function isLongerThanThreeYear(car, currentDate) {
     const currentMonth = new Date(currentDate).getMonth(),
         currentYear = new Date(currentDate).getYear();

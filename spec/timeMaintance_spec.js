@@ -79,20 +79,6 @@ describe('getTimeMaintanceInfo', function () {
   Porsche: 1 (CAR0002)`;
         getTimeMaintanceInfo(carInfos, currentDate).should.eql(output);
     })
-    it.skip("generateTimeString should generate correct string", function () {
-        let list = [{
-            brand: "Audi",
-            carList: ["CAR0006"],
-            number: 1
-        }, {
-            brand: "Porsche",
-            carList: ["CAR0002"],
-            number: 1
-        }]
-        generateTimeString(list).should.eql(`* Time-related maintenance coming soon...
-  Audi: 1 (CAR0006)
-  Porsche: 1 (CAR0002)`)
-    });
     it("timeToMaintain will return true if a car is time to be maintained",function () {
         // carInfos.forEach((car,index) => {
         //     if(index === 1 || index === 5){

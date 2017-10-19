@@ -131,12 +131,10 @@ describe("test utility functions", function () {
         const str = 'Reminder\n  ==================';
         const timeStr = `Audi: 1 (CAR0006)
   Porsche: 1 (CAR0002)`,
-            distanceStr = `* Distance-related maintenance coming soon...
-  BYD: 1 (CAR0005)
+            distanceStr = `BYD: 1 (CAR0005)
   Ford: 1 (CAR0007)
   Porsche: 1 (CAR0001)`,
-            writeOffStr = `* Write-off coming soon...
-  BYD: 1 (CAR0004)
+            writeOffStr = `BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`;
         const output = `Reminder
   ==================

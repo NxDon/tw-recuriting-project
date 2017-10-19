@@ -1,10 +1,8 @@
-
 function orderCarsByBrand(array) {
     return array.sort((a,b) => {
         return a.brand > b.brand;
     })
 }
-
 
 function hasSameBrand(carObj, writeOffCars) {
     return writeOffCars.some((car) => {
@@ -42,7 +40,6 @@ function generateString(carInfoArray) {
     });
     return result.trim();
 }
-
 
 module.exports = {
     orderCarsByBrand,

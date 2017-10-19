@@ -8,7 +8,9 @@ function concatCarInfos(timeInfo, distanceInfo, writeOffInfo) {
   ==================
   * Time-related maintenance coming soon...
   ${timeInfo}
+  * Distance-related maintenance coming soon...
   ${distanceInfo}
+  * Write-off coming soon...
   ${writeOffInfo}`;
 }
 
