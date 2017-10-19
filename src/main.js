@@ -2,7 +2,6 @@ const {getTimeMaintanceInfo} = require('./getTimeMaintanceInfo.js');
 const {getDistanceMaintanceInfo} = require('./getDistanceMaintenance.js');
 const {getWriteOffInfo} = require('./getWriteOffInfo.js');
 
-
 function concatCarInfos(timeInfo, distanceInfo, writeOffInfo) {
     return `Reminder
   ==================
@@ -49,10 +48,4 @@ module.exports = {
     main,
     concatCarInfos,
     getCarInfos,
-
 };
-
-const input = `SubmitDate: 2050/05/01
-  CAR0003|2047/05/02|Mercedes-Benz|37789|T`;
-
-main(input)

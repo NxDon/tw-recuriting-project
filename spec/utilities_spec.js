@@ -157,7 +157,7 @@ describe("test utility functions", function () {
         ]
         utilities.orderCarsByBrand(carInfoArray).should.eql(result);
 
-    })
+    });
 
     it('enrollInList should add carObj or modified existed obj in given list', function () {
         enrolledList = [{
@@ -195,7 +195,7 @@ describe("test utility functions", function () {
                 number: 1
             }]
         )
-    })
+    });
 
     it("generateString will generate string",function () {
         let list = [{
@@ -206,9 +206,9 @@ describe("test utility functions", function () {
             brand: "Porsche",
             carList: ["CAR0002"],
             number: 1
-        }]
+        }];
         utilities.generateString(list).should.eql(`Audi: 1 (CAR0006)
-  Porsche: 1 (CAR0002)`)
+  Porsche: 1 (CAR0002)`);
 
     })
 })

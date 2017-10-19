@@ -32,7 +32,7 @@ function handleAllCars(carInfoArray, currentDate) {
 
     carInfoArray.forEach((car) => {
         if (timeToMaintain(car, currentDate)) {
-            enrollInList(car, result)
+            enrollInList(car, result);
             car.writeOffOrMaintained = true
         }
     });
@@ -41,7 +41,7 @@ function handleAllCars(carInfoArray, currentDate) {
 }
 
 function getTimeMaintanceInfo(carInfoArray, currentDate) {
-    let result = handleAllCars(carInfoArray, currentDate)
+    let result = handleAllCars(carInfoArray, currentDate);
     let sortedArray = orderCarsByBrand(result);
     return generateString(sortedArray)
 }
@@ -49,4 +49,4 @@ function getTimeMaintanceInfo(carInfoArray, currentDate) {
 module.exports = {
     getTimeMaintanceInfo,
     timeToMaintain
-}
+};

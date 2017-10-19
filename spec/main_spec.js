@@ -28,7 +28,7 @@ describe('test main', function () {
   Ford: 1 (CAR0009)`;
         const result = maintainer.main(input);
         result.should.eql(output)
-    })
+    });
 
     it('should return correct string',function () {
         let input = `SubmitDate: 2050/05/01
@@ -61,7 +61,7 @@ describe("test utility functions", function () {
         miles: 10000,
         heavyRepaired: false,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0002",
         time: "2029/10/14",
@@ -69,7 +69,7 @@ describe("test utility functions", function () {
         miles: 9000,
         heavyRepaired: false,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0003",
         time: "2026/08/17",
@@ -77,7 +77,7 @@ describe("test utility functions", function () {
         miles: 13000,
         heavyRepaired: false,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0004",
         time: "2027/11/01",
@@ -85,7 +85,7 @@ describe("test utility functions", function () {
         miles: 23000,
         heavyRepaired: true,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0005",
         time: "2027/01/11",
@@ -93,7 +93,7 @@ describe("test utility functions", function () {
         miles: 19500,
         heavyRepaired: false,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0006",
         time: "2029/07/01",
@@ -101,7 +101,7 @@ describe("test utility functions", function () {
         miles: 10001,
         heavyRepaired: true,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0007",
         time: "2028/04/19",
@@ -109,7 +109,7 @@ describe("test utility functions", function () {
         miles: 9800,
         heavyRepaired: false,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0008",
         time: "2027/07/10",
@@ -117,7 +117,7 @@ describe("test utility functions", function () {
         miles: 15000,
         heavyRepaired: true,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }, {
         id: "CAR0009",
         time: "2024/10/22",
@@ -125,8 +125,9 @@ describe("test utility functions", function () {
         miles: 90300,
         heavyRepaired: false,
         writeOffOrMaintained: false,
-        alreadyWriteOffed : false
+        alreadyWriteOffed: false
     }];
+
     it('concatCarInfos should concat inputs with correct header', function () {
         const str = 'Reminder\n  ==================';
         const timeStr = `Audi: 1 (CAR0006)
@@ -149,7 +150,7 @@ describe("test utility functions", function () {
   BYD: 1 (CAR0004)
   Ford: 1 (CAR0009)`;
         maintainer.concatCarInfos(timeStr, distanceStr, writeOffStr).should.eql(output)
-    })
+    });
 
     it("getCarInfos should return object array", function () {
         const input = `SubmitDate: 2030/09/01
@@ -163,7 +164,7 @@ describe("test utility functions", function () {
   CAR0008|2027/07/10|Ford|15000|T
   CAR0009|2024/10/22|Ford|90300|F`;
 
-        const SubmitDate = `2030/09/01`
-        maintainer.getCarInfos(input).should.eql({currentDate:SubmitDate, carInfoArray});
+        const SubmitDate = `2030/09/01`;
+        maintainer.getCarInfos(input).should.eql({currentDate: SubmitDate, carInfoArray});
     })
-})
+});

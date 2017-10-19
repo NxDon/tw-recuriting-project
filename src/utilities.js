@@ -10,7 +10,6 @@ function hasSameBrand(carObj, writeOffCars) {
     })
 }
 
-
 function enrollInList(carObj, enrolledList) {
     if (hasSameBrand(carObj, enrolledList)) {
         enrolledList.forEach((obj, index) => {
@@ -46,4 +45,4 @@ module.exports = {
     hasSameBrand,
     enrollInList,
     generateString
-}
+};
