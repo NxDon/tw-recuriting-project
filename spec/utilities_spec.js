@@ -8,65 +8,73 @@ describe("test utility functions", function () {
         brand: "Porsche",
         miles: 10000,
         heavyRepaired: false,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0002",
         time: "2029/10/14",
         brand: "Porsche",
         miles: 9000,
         heavyRepaired: false,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0003",
         time: "2026/08/17",
         brand: "Porsche",
         miles: 13000,
         heavyRepaired: false,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0004",
         time: "2027/11/01",
         brand: "BYD",
         miles: 23000,
         heavyRepaired: true,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0005",
         time: "2027/01/11",
         brand: "BYD",
         miles: 19500,
         heavyRepaired: false,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0006",
         time: "2029/07/01",
         brand: "Audi",
         miles: 10001,
         heavyRepaired: true,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0007",
         time: "2028/04/19",
         brand: "Ford",
         miles: 9800,
         heavyRepaired: false,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0008",
         time: "2027/07/10",
         brand: "Ford",
         miles: 15000,
         heavyRepaired: true,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }, {
         id: "CAR0009",
         time: "2024/10/22",
         brand: "Ford",
         miles: 90300,
         heavyRepaired: false,
-        writeOffOrMaintained: false
+        writeOffOrMaintained: false,
+        alreadyWriteOffed: false
     }];
-
     it("orderCarsByBrand should sort array by its brand name alphabetically", function () {
         const result = [
             {
@@ -75,35 +83,40 @@ describe("test utility functions", function () {
                 brand: 'Audi',
                 miles: 10001,
                 heavyRepaired: true,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             }, {
                 id: 'CAR0004',
                 time: '2027/11/01',
                 brand: 'BYD',
                 miles: 23000,
                 heavyRepaired: true,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             }, {
                 id: 'CAR0005',
                 time: '2027/01/11',
                 brand: 'BYD',
                 miles: 19500,
                 heavyRepaired: false,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             }, {
                 id: 'CAR0007',
                 time: '2028/04/19',
                 brand: 'Ford',
                 miles: 9800,
                 heavyRepaired: false,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             }, {
                 id: 'CAR0008',
                 time: '2027/07/10',
                 brand: 'Ford',
                 miles: 15000,
                 heavyRepaired: true,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             },
             {
                 id: 'CAR0009',
@@ -111,7 +124,8 @@ describe("test utility functions", function () {
                 brand: 'Ford',
                 miles: 90300,
                 heavyRepaired: false,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             },
             {
                 id: 'CAR0001',
@@ -119,7 +133,8 @@ describe("test utility functions", function () {
                 brand: 'Porsche',
                 miles: 10000,
                 heavyRepaired: false,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             },
             {
                 id: 'CAR0002',
@@ -127,7 +142,8 @@ describe("test utility functions", function () {
                 brand: 'Porsche',
                 miles: 9000,
                 heavyRepaired: false,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             },
             {
                 id: 'CAR0003',
@@ -135,7 +151,8 @@ describe("test utility functions", function () {
                 brand: 'Porsche',
                 miles: 13000,
                 heavyRepaired: false,
-                writeOffOrMaintained: false
+                writeOffOrMaintained: false,
+                alreadyWriteOffed: false
             }
         ]
         utilities.orderCarsByBrand(carInfoArray).should.eql(result);
@@ -154,14 +171,16 @@ describe("test utility functions", function () {
             brand: "Audi",
             miles: 10001,
             heavyRepaired: true,
-            writeOffOrMaintained: false
+            writeOffOrMaintained: false,
+            alreadyWriteOffed: false
         }, {
             id: "CAR0007",
             time: "2023/04/19",
             brand: "Ford",
             miles: 9800,
             heavyRepaired: false,
-            writeOffOrMaintained: false
+            writeOffOrMaintained: false,
+            alreadyWriteOffed: false
         }]
         utilities.enrollInList(cars[0], enrolledList);
         utilities.enrollInList(cars[1], enrolledList);
