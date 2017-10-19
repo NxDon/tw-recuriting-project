@@ -15,7 +15,8 @@ function generateTimeString(carInfoArray) {
 function handleAllCars(carInfoArray,currentDate) {
     let result = []
 
-    //enrolledList(car,result);
+
+
 
 
     result = [{
