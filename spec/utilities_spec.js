@@ -1,7 +1,7 @@
 const should = require("should");
 const utilities = require("../src/utilities");
 
-describe("test utility functions",function () {
+describe("test utility functions", function () {
     const carInfoArray = [{
         id: "CAR0001",
         time: "2025/04/05",
@@ -142,8 +142,41 @@ describe("test utility functions",function () {
 
     })
 
-
-
-
-
+    it('enrollInList should add carObj or modified existed obj in given list', function () {
+        enrolledList = [{
+            brand: "Ford",
+            carList: ["CAR0002"],
+            number: 1
+        }];
+        cars = [{
+            id: "CAR0006",
+            time: "2024/07/01",
+            brand: "Audi",
+            miles: 10001,
+            heavyRepaired: true,
+            writeOffOrMaintained: false
+        }, {
+            id: "CAR0007",
+            time: "2023/04/19",
+            brand: "Ford",
+            miles: 9800,
+            heavyRepaired: false,
+            writeOffOrMaintained: false
+        }]
+        utilities.enrollInList(cars[0], enrolledList);
+        utilities.enrollInList(cars[1], enrolledList);
+        enrolledList.should.deepEqual(
+            [{
+                brand: "Ford",
+                carList: ["CAR0002", "CAR0007"],
+                number: 2
+            }, {
+                brand: "Audi",
+                carList: ["CAR0006"],
+                number: 1
+            }]
+        )
+    })
 })
+
+

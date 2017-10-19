@@ -1,4 +1,4 @@
-const {orderCarsByBrand,hasSameBrand} = require('./utilities');
+const {orderCarsByBrand,enrolledList} = require('./utilities');
 
 function generateTimeString(carInfoArray) {
     let result = ``;
@@ -11,8 +11,14 @@ function generateTimeString(carInfoArray) {
   ${result.trim()}`;
 }
 
+
 function handleAllCars(carInfoArray,currentDate) {
-    return [{
+    let result = []
+
+    //enrolledList(car,result);
+
+
+    result = [{
         brand: "Audi",
         carList: ["CAR0006"],
         number: 1
@@ -21,6 +27,7 @@ function handleAllCars(carInfoArray,currentDate) {
         carList: ["CAR0002"],
         number: 1
     }];
+    return result;
 }
 
 function getTimeMaintanceInfo(carInfoArray,currentDate) {

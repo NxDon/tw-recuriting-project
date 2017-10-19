@@ -11,7 +11,30 @@ function hasSameBrand(carObj, writeOffCars) {
         return car.brand === carObj.brand;
     })
 }
+
+
+function enrollInList(carObj, enrolledList) {
+    if (hasSameBrand(carObj, enrolledList)) {
+        enrolledList.forEach((obj, index) => {
+            if (obj.brand === carObj.brand) {
+                enrolledList[index] = {
+                    brand: obj.brand,
+                    carList: [...obj.carList, carObj.id],
+                    number: obj.number + 1
+                }
+            }
+        })
+    } else {
+        enrolledList.push({
+            brand: carObj.brand,
+            carList: [carObj.id],
+            number: 1
+        })
+    }
+
+}
 module.exports = {
     orderCarsByBrand,
-    hasSameBrand
+    hasSameBrand,
+    enrollInList
 }

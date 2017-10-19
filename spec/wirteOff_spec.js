@@ -4,7 +4,7 @@ const {
     carWillWriteOff,
     generateWriteOffStr,
     hasSameBrandWriteOffed,
-    enrollWriteOffList,
+    enrollInList,
 } = require('../src/getWriteOffInfo');
 
 describe('getWriteOffInfo', function () {
@@ -102,7 +102,7 @@ describe('test utility functions', function () {
             heavyRepaired: true,
             writeOffOrMaintained: false
         }];
-        writeOffList = [{
+        enrolledList = [{
             brand: "Ford",
             carList: ["CAR0002"],
             number: 1
@@ -136,24 +136,10 @@ describe('test utility functions', function () {
 
     })
     it('hasSameBrandWriteOffed return true if there is already same brand cars write offed', function () {
-        hasSameBrandWriteOffed(cars[1], writeOffList).should.eql(true);
-        hasSameBrandWriteOffed(cars[0], writeOffList).should.eql(false);
+        hasSameBrandWriteOffed(cars[1], enrolledList).should.eql(true);
+        hasSameBrandWriteOffed(cars[0], enrolledList).should.eql(false);
     })
-    it('enrollWriteOffList should add carObj or modified existed obj', function () {
-        enrollWriteOffList(cars[0], writeOffList);
-        enrollWriteOffList(cars[1], writeOffList);
-        writeOffList.should.deepEqual(
-            [{
-                brand: "Ford",
-                carList: ["CAR0002", "CAR0007"],
-                number: 2
-            }, {
-                brand: "Audi",
-                carList: ["CAR0006"],
-                number: 1
-            }]
-        )
-    })
+
     it('generateWriteOffStr should return correct string',function () {
         let list = [{
             brand: "Audi",
