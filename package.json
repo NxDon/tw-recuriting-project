@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node src/main.js",
+    "test": "nyc mocha ./spec/*spec.js"
   },
   "repository": {
     "type": "git",
@@ -15,11 +16,9 @@
   "bugs": {
     "url": "https://github.com/NxDon/tw-recuriting-project/issues"
   },
-  "scripts": {
-    "test": "mocha ./spec/*spec.js"
-  },
   "devDependencies": {
     "mocha": "^3.2.0",
+    "nyc": "^11.2.1",
     "should": "^11.2.0"
   },
   "homepage": "https://github.com/NxDon/tw-recuriting-project#readme"

@@ -180,6 +180,18 @@ describe('test utility functions', function () {
                 carWillWriteOff(car, currentDate).should.eql(false);
             }
         })
+
+        const specialDate = `1999/12/15`;
+        const testCar = {
+            id: "CAR0010",
+            time: "1994/1/25",
+            brand: "Porsche",
+            miles: 10000,
+            heavyRepaired: false,
+            writeOffOrMaintained: false,
+            alreadyWriteOffed: false
+        }
+        carWillWriteOff(testCar, specialDate).should.eql(true);
     });
 
     it('hasSameBrandWriteOffed return true if there is already same brand cars write offed', function () {
