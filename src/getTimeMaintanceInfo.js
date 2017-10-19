@@ -1,25 +1,15 @@
-const {orderCarsByBrand, enrollInList,generateString} = require('./utilities');
+const {orderCarsByBrand, enrollInList, generateString} = require('./utilities');
 
-function isLongerThanThreeYear(car, currentDate) {
-    const currentMonth = new Date(currentDate).getMonth(),
-        currentYear = new Date(currentDate).getYear();
-    const productYear = new Date(car.time).getYear(),
-        productMonth = new Date(car.time).getMonth();
-    if (currentYear - productYear > 3) {
-        return true;
-    } else if (currentYear - productYear === 3) {
-        return currentMonth >= productMonth
-    }
-    return false;
+function isEqualOrLongerThanThreeYear(car, currentDate) {
+    const currentYear = new Date(currentDate).getYear();
+    const productYear = new Date(car.time).getYear();
+    return currentYear - productYear >= 3
+
 }
 
 function shouldMaintain(car, currentDate, maintainPeriod) {
-    const currentMonth = new Date(currentDate).getMonth() + 1,
-        currentYear = new Date(currentDate).getYear();
-    const productYear = new Date(car.time).getYear(),
-        productMonth = new Date(car.time).getMonth() + 1;
-    let res1 = currentMonth === (productMonth + maintainPeriod) % 12;
-    let res2 = currentMonth + 1 === (productMonth + maintainPeriod) % 12
+    const currentMonth = new Date(currentDate).getMonth() + 1;
+    const productMonth = new Date(car.time).getMonth() + 1;
     return currentMonth === (productMonth + maintainPeriod) % 12 || (productMonth + maintainPeriod) % 12 === (currentMonth + 1) % 12
 }
 
@@ -30,7 +20,7 @@ function timeToMaintain(car, currentDate) {
     let maintainPeriod = 12;
     if (car.heavyRepaired) {
         maintainPeriod = 3;
-    } else if (isLongerThanThreeYear(car, currentDate)) {
+    } else if (isEqualOrLongerThanThreeYear(car, currentDate)) {
         maintainPeriod = 6;
     }
     return shouldMaintain(car, currentDate, maintainPeriod)

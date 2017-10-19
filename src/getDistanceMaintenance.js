@@ -1,6 +1,6 @@
 const {orderCarsByBrand, enrollInList,generateString} = require('./utilities');
 
-function carDrivedLongEnough(car) {
+function carDrivenLongEnough(car) {
     if (car.writeOffOrMaintained || car.alreadyWriteOffed) {
         return false;
     }
@@ -10,23 +10,22 @@ function carDrivedLongEnough(car) {
 function handleAllCars(carInfoArray) {
     let result = [];
     carInfoArray.forEach((car) => {
-        if (carDrivedLongEnough(car)) {
-            enrollInList(car, result)
+        if (carDrivenLongEnough(car)) {
+            enrollInList(car, result);
             car.writeOffOrMaintained = true
         }
-    })
-
+    });
     return result;
 }
 
 function getDistanceMaintanceInfo(carInfoArray) {
-    let result = handleAllCars(carInfoArray)
-    let sortedArray = orderCarsByBrand(result)
+    let result = handleAllCars(carInfoArray);
+    let sortedArray = orderCarsByBrand(result);
     return generateString(sortedArray)
 }
 
 module.exports = {
     getDistanceMaintanceInfo,
     handleAllCars,
-    carDrivedLongEnough
+    carDrivenLongEnough
 }

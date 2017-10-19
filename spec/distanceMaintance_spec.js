@@ -2,7 +2,7 @@ const should = require('should');
 const {
     getDistanceMaintanceInfo,
     handleAllCars,
-    carDrivedLongEnough
+    carDrivenLongEnough
 } = require('../src/getDistanceMaintenance');
 
 describe('getDistanceMaintanceInfo', function () {
@@ -100,12 +100,12 @@ describe('getDistanceMaintanceInfo', function () {
 
     })
 
-    it('carDrivedLongEnough will judge a car is to be maintained due to long drive', function () {
+    it('carDrivenLongEnough will judge a car is to be maintained due to long drive', function () {
         carInfos.forEach((car, index) => {
             if (index === 0 || index === 4 || index === 6) {
-                carDrivedLongEnough(car).should.eql(true);
+                carDrivenLongEnough(car).should.eql(true);
             } else {
-                carDrivedLongEnough(car).should.eql(false);
+                carDrivenLongEnough(car).should.eql(false);
             }
         })
     })
