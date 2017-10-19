@@ -1,19 +1,26 @@
-const {orderCarsByBrand,enrollInList} = require('./utilities');
+const {orderCarsByBrand, enrollInList} = require('./utilities');
+
 function carWillWriteOff(car, currentDate) {
+    const MillisecondsOf365Days = 31536000000;
+    const lifeTime = car.heavyRepaired ? 3 : 6;
     const currentMonth = new Date(currentDate).getMonth(),
         currentYear = new Date(currentDate).getYear();
-    const productYear = new Date(car.time).getYear(),
-        productMonth = new Date(car.time).getMonth();
-    const lifeTime = car.heavyRepaired ? 3 : 6;
+    const writeOffDate = new Date(new Date(car.time).getTime() + MillisecondsOf365Days * lifeTime),
+        writeOffMonth = writeOffDate.getMonth(),
+        writeOffYear = writeOffDate.getYear();
 
-    if (productYear + lifeTime < currentYear) {
+
+    if (writeOffYear < currentYear) {
         return true;//报废
     }
-    if (productYear + lifeTime === currentYear) {
-        return (currentMonth <= productMonth + 1)
+    if (writeOffYear === currentYear) {
+        if (currentDate > writeOffDate) {
+            //已经报废
+        }
+        return (currentMonth === writeOffMonth || currentMonth === writeOffMonth - 1)
     }
-    if (productYear + lifeTime === currentYear + 1) {//处理即将跨年的情况：例如1994/1/25生产，现在:1999/12/15
-        return (productMonth === 0 && currentMonth === 11)
+    if (writeOffYear === currentYear + 1) {//处理即将跨年的情况：例如1994/1/25生产，现在:1999/12/15
+        return (writeOffMonth === 0 && currentMonth === 11)
     }
     return false;
 }
@@ -22,7 +29,9 @@ function carWillWriteOff(car, currentDate) {
 function generateWriteOffStr(carInfoArray) {
     let result = ``;
     carInfoArray.forEach((obj) => {
-        result+=`${obj.brand}: ${obj.number} (${obj.carList.reduce((id1,id2) => {return id1+', '+id2})})\n  `;
+        result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
+            return id1 + ', ' + id2
+        })})\n  `;
     })
     return `* Write-off coming soon...
   ${result.trim()}`

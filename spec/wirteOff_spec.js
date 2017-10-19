@@ -134,6 +134,7 @@ describe('test utility functions', function () {
             carWillWriteOff(car, currentDate).should.eql(false);
         })
 
+
     })
     it('hasSameBrandWriteOffed return true if there is already same brand cars write offed', function () {
         hasSameBrandWriteOffed(cars[1], enrolledList).should.eql(true);

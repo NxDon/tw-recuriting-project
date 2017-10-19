@@ -23,7 +23,8 @@ function getCarInfos(carInfos) {
             brand: infos[2],
             miles: parseInt(infos[3]),
             heavyRepaired: infos[4] === "F" ? false : true,
-            writeOffOrMaintained:false
+            writeOffOrMaintained:false,
+            alreadyWriteOffed : false
         })
     }
 
@@ -37,6 +38,7 @@ function main(carInfos) {
     const {carInfoArray, currentDate} = getCarInfos(carInfos);
     const writeOffInfo = getWriteOffInfo(carInfoArray, currentDate);
     const distanceInfo = getDistanceMaintanceInfo(carInfoArray);
+
     const timeInfo = getTimeMaintanceInfo(carInfoArray, currentDate);
     return concatCarInfos(timeInfo, distanceInfo, writeOffInfo);
 }
