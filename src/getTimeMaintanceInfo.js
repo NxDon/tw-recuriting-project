@@ -35,7 +35,7 @@ function shouldMaintain(car, currentDate, maintainPeriod) {
 }
 
 function timeToMaintain(car, currentDate) {
-    if (car.writeOffOrMaintained) {
+    if (car.writeOffOrMaintained || car.alreadyWriteOffed) {
         return false;
     }
     let maintainPeriod = 12;
@@ -49,24 +49,15 @@ function timeToMaintain(car, currentDate) {
 }
 
 function handleAllCars(carInfoArray, currentDate) {
-    let result = []
+    let result = [];
 
     carInfoArray.forEach((car) => {
         if (timeToMaintain(car, currentDate)) {
             enrollInList(car, result)
             car.writeOffOrMaintained = true
         }
-    })
+    });
 
-    result = [{
-        brand: "Audi",
-        carList: ["CAR0006"],
-        number: 1
-    }, {
-        brand: "Porsche",
-        carList: ["CAR0002"],
-        number: 1
-    }];
     return result;
 }
 

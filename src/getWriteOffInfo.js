@@ -9,7 +9,8 @@ function carWillWriteOff(car, current) {
     const writeOffDate = new Date(new Date(car.time).getTime() + MillisecondsOf365Days * lifeTime),
         writeOffMonth = writeOffDate.getMonth(),
         writeOffYear = writeOffDate.getYear();
-    if (currentDate > writeOffDate) {
+
+    if (currentDate >= writeOffDate) {
         car.alreadyWriteOffed =true;// 已经报废,无需提醒即将报废
         return false;
     }

@@ -29,6 +29,28 @@ describe('test main', function () {
         const result = maintainer.main(input);
         result.should.eql(output)
     })
+
+    it('should return correct string',function () {
+        let input = `SubmitDate: 2050/05/01
+  CAR0001|2044/05/01|Volkswagen|65535|F
+  CAR0002|2044/05/03|BMW|100001|F
+  CAR0003|2047/05/02|Mercedes-Benz|37789|T
+  CAR0004|2047/05/03|Honda|59908|T
+  CAR0005|2049/12/10|Peugeot|49999|F
+  CAR0006|2046/11/15|Jeep|2000|F
+  CAR0007|2046/11/16|Jeep|5000|F`;
+        let output = `Reminder
+  ==================
+  * Time-related maintenance coming soon...
+  Jeep: 2 (CAR0006, CAR0007)
+  * Distance-related maintenance coming soon...
+  Peugeot: 1 (CAR0005)
+  * Write-off coming soon...
+  BMW: 1 (CAR0002)
+  Honda: 1 (CAR0004)`;
+        const result = maintainer.main(input);
+        result.should.eql(output)
+    })
 });
 
 describe("test utility functions", function () {
