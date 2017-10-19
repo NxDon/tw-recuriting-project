@@ -1,15 +1,15 @@
-const {orderCarsByBrand, enrollInList} = require('./utilities');
+const {orderCarsByBrand, enrollInList,generateString} = require('./utilities');
 
-function generateTimeString(carInfoArray) {
-    let result = ``;
-    carInfoArray.forEach((obj) => {
-        result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
-            return id1 + ', ' + id2
-        })})\n  `;
-    });
-    return `* Time-related maintenance coming soon...
-  ${result.trim()}`;
-}
+// function generateTimeString(carInfoArray) {
+//     let result = ``;
+//     carInfoArray.forEach((obj) => {
+//         result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
+//             return id1 + ', ' + id2
+//         })})\n  `;
+//     });
+//     return `* Time-related maintenance coming soon...
+//   ${result.trim()}`;
+// }
 
 function isLongerThanThreeYear(car, currentDate) {
     const currentMonth = new Date(currentDate).getMonth(),
@@ -64,11 +64,10 @@ function handleAllCars(carInfoArray, currentDate) {
 function getTimeMaintanceInfo(carInfoArray, currentDate) {
     let result = handleAllCars(carInfoArray, currentDate)
     let sortedArray = orderCarsByBrand(result);
-    return generateTimeString(sortedArray)
+    return generateString(sortedArray)
 }
 
 module.exports = {
     getTimeMaintanceInfo,
-    generateTimeString,
     timeToMaintain
 }

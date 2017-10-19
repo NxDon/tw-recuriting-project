@@ -109,7 +109,6 @@ describe('getWriteOffInfo', function () {
 })
 
 describe('test utility functions', function () {
-    let oldCars, robust, writeOffList, cars;
     let carInfoArray = [];
     beforeEach(() => {
         carInfoArray=[{
@@ -202,12 +201,13 @@ describe('test utility functions', function () {
             }
         })
     })
+
     it('hasSameBrandWriteOffed return true if there is already same brand cars write offed', function () {
         hasSameBrandWriteOffed(carInfoArray[6], enrolledList).should.eql(true);
         hasSameBrandWriteOffed(carInfoArray[5], enrolledList).should.eql(false);
     })
 
-    it('generateWriteOffStr should return correct string',function () {
+    it.skip('generateWriteOffStr should return correct string',function () {
         let list = [{
             brand: "Audi",
             carList: ["CAR0006"],

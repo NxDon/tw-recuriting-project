@@ -196,6 +196,21 @@ describe("test utility functions", function () {
             }]
         )
     })
+
+    it("generateString will generate string",function () {
+        let list = [{
+            brand: "Audi",
+            carList: ["CAR0006"],
+            number: 1
+        }, {
+            brand: "Porsche",
+            carList: ["CAR0002"],
+            number: 1
+        }]
+        utilities.generateString(list).should.eql(`Audi: 1 (CAR0006)
+  Porsche: 1 (CAR0002)`)
+
+    })
 })
 
 

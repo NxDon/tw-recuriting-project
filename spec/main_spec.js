@@ -129,8 +129,7 @@ describe("test utility functions", function () {
     }];
     it('concatCarInfos should concat inputs with correct header', function () {
         const str = 'Reminder\n  ==================';
-        const timeStr = `* Time-related maintenance coming soon...
-  Audi: 1 (CAR0006)
+        const timeStr = `Audi: 1 (CAR0006)
   Porsche: 1 (CAR0002)`,
             distanceStr = `* Distance-related maintenance coming soon...
   BYD: 1 (CAR0005)

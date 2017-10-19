@@ -31,10 +31,22 @@ function enrollInList(carObj, enrolledList) {
             number: 1
         })
     }
-
 }
+
+function generateString(carInfoArray) {
+    let result = ``;
+    carInfoArray.forEach((obj) => {
+        result += `${obj.brand}: ${obj.number} (${obj.carList.reduce((id1, id2) => {
+            return id1 + ', ' + id2
+        })})\n  `;
+    });
+    return result.trim();
+}
+
+
 module.exports = {
     orderCarsByBrand,
     hasSameBrand,
-    enrollInList
+    enrollInList,
+    generateString
 }

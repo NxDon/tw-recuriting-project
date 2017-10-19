@@ -6,6 +6,7 @@ const {getWriteOffInfo} = require('./getWriteOffInfo.js');
 function concatCarInfos(timeInfo, distanceInfo, writeOffInfo) {
     return `Reminder
   ==================
+  * Time-related maintenance coming soon...
   ${timeInfo}
   ${distanceInfo}
   ${writeOffInfo}`;
