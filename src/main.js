@@ -1,51 +1,12 @@
 const {getTimeMaintanceInfo} = require('./getTimeMaintanceInfo.js');
 const {getDistanceMaintanceInfo} = require('./getDistanceMaintenance.js');
 const {getWriteOffInfo} = require('./getWriteOffInfo.js');
+const {concatCarInfos, getCarInfos} = require('./utilities');
 
-function concatCarInfos(timeInfo, distanceInfo, writeOffInfo) {
-    return `Reminder
-  ==================
-  * Time-related maintenance coming soon...
-  ${timeInfo}
-  * Distance-related maintenance coming soon...
-  ${distanceInfo}
-  * Write-off coming soon...
-  ${writeOffInfo}`;
-}
-
-function getCarInfos(carInfos) {
-    const inputArray = carInfos.split('\n');
-    const SubmitDate = inputArray[0].split(':')[1].trim();
-    let infoObjs = [];
-    for (let i = 1; i < inputArray.length; i++) {
-        let infos = inputArray[i].trim().split('|');
-        infoObjs.push({
-            id: infos[0],
-            time: infos[1],
-            brand: infos[2],
-            miles: parseInt(infos[3]),
-            heavyRepaired: infos[4] !== "F",
-            writeOffOrMaintained:false,
-            alreadyWriteOffed : false
-        })
-    }
-
-    return {
-        currentDate:SubmitDate,
-        carInfoArray:infoObjs
-    }
-}
-
-function main(carInfos) {
+module.exports = function main(carInfos) {
     const {carInfoArray, currentDate} = getCarInfos(carInfos);
     const writeOffInfo = getWriteOffInfo(carInfoArray, currentDate);
     const distanceInfo = getDistanceMaintanceInfo(carInfoArray);
     const timeInfo = getTimeMaintanceInfo(carInfoArray, currentDate);
     return concatCarInfos(timeInfo, distanceInfo, writeOffInfo);
 }
-
-module.exports = {
-    main,
-    concatCarInfos,
-    getCarInfos,
-};

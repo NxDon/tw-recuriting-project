@@ -40,9 +40,44 @@ function generateString(carInfoArray) {
     return result.trim();
 }
 
+function concatCarInfos(timeInfo, distanceInfo, writeOffInfo) {
+    return `Reminder
+  ==================
+  * Time-related maintenance coming soon...
+  ${timeInfo}
+  * Distance-related maintenance coming soon...
+  ${distanceInfo}
+  * Write-off coming soon...
+  ${writeOffInfo}`;
+}
+
+function getCarInfos(carInfos) {
+    const inputArray = carInfos.split('\n');
+    const SubmitDate = inputArray[0].split(':')[1].trim();
+    let infoObjs = [];
+    for (let i = 1; i < inputArray.length; i++) {
+        let infos = inputArray[i].trim().split('|');
+        infoObjs.push({
+            id: infos[0],
+            time: infos[1],
+            brand: infos[2],
+            miles: parseInt(infos[3]),
+            heavyRepaired: infos[4] !== "F",
+            writeOffOrMaintained:false,
+            alreadyWriteOffed : false
+        })
+    }
+
+    return {
+        currentDate:SubmitDate,
+        carInfoArray:infoObjs
+    }
+}
+
 module.exports = {
     orderCarsByBrand,
-    hasSameBrand,
+    concatCarInfos,
+    getCarInfos,
     enrollInList,
     generateString
 };
